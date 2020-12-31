@@ -12,7 +12,12 @@ import {
   Text,
   List,
   ListItem,
+  Thumbnail,
+  H2,
+  H3,
 } from 'native-base';
+
+import { GROUPS } from '../data/dummy-data';
 
 const GroupListScreen = ({ navigation }) => {
   return (
@@ -24,7 +29,7 @@ const GroupListScreen = ({ navigation }) => {
           </Button>
         </Left>
         <Body>
-          <Title>Header</Title>
+          <Title>Groups</Title>
         </Body>
         <Right />
       </Header>
@@ -37,30 +42,35 @@ const GroupListScreen = ({ navigation }) => {
         // }}
       >
         <List>
-          <ListItem selected>
-            <Left>
-              <Text>Simon Mignolet</Text>
-            </Left>
-            <Right>
-              <Icon name='arrow-forward' />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Nathaniel Clyne</Text>
-            </Left>
-            <Right>
-              <Icon name='arrow-forward' />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Dejan Lovren</Text>
-            </Left>
-            <Right>
-              <Icon name='arrow-forward' />
-            </Right>
-          </ListItem>
+          {GROUPS.map((group) => (
+            <ListItem
+              key={group.group_ID}
+              thumbnail
+              onPress={() => {
+                navigation.navigate('InventoryList', {
+                  group_ID: group.group_ID,
+                });
+              }}
+            >
+              <Left>
+                <Thumbnail
+                  square
+                  source={{
+                    uri: group.group_icon,
+                  }}
+                />
+              </Left>
+              <Body>
+                <H3>{group.group_name}</H3>
+                {/* <Text note numberOfLines={1}>
+                Its time to build a difference . .
+              </Text> */}
+              </Body>
+              <Right>
+                <Icon name='arrow-forward' />
+              </Right>
+            </ListItem>
+          ))}
         </List>
       </Content>
     </Container>
