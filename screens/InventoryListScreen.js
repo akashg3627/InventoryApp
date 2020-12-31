@@ -12,9 +12,12 @@ import {
   Text,
   List,
   ListItem,
+  Card,
+  CardItem,
 } from 'native-base';
 
 import { INVENTORY } from '../data/dummy-data';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const InventoryListScreen = ({ route, navigation }) => {
   const { group_ID } = route.params;
@@ -54,7 +57,7 @@ const InventoryListScreen = ({ route, navigation }) => {
         //   alignItems: 'center',
         // }}
       >
-        <List>
+        {/* <List>
           {groupInventory.map((collection) => (
             <ListItem key={collection.inventory_collection_ID}>
               <Left>
@@ -65,7 +68,27 @@ const InventoryListScreen = ({ route, navigation }) => {
               </Right>
             </ListItem>
           ))}
-        </List>
+        </List> */}
+
+        {groupInventory.map((collection) => (
+          <TouchableOpacity
+            activeOpacity={0.6}
+            key={collection.inventory_collection_ID}
+            onPress={() => {
+              navigation.navigate('InventoryDetails', {
+                inventory_collection_ID: collection.inventory_collection_ID,
+              });
+            }}
+          >
+            <Card>
+              <CardItem>
+                <Body>
+                  <Text>{collection.inventory_collection_name}</Text>
+                </Body>
+              </CardItem>
+            </Card>
+          </TouchableOpacity>
+        ))}
       </Content>
     </Container>
   );

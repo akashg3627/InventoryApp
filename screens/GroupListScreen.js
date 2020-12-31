@@ -25,7 +25,12 @@ const GroupListScreen = ({ navigation }) => {
       <Header>
         <Left>
           <Button transparent>
-            <Icon name='menu' />
+            <Icon
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+              name='menu'
+            />
           </Button>
         </Left>
         <Body>
