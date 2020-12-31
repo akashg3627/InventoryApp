@@ -45,7 +45,7 @@ const DrawerContent = ({ navigation }) => {
         labelStyle={{
           fontSize: 18,
         }}
-        inactiveBackgroundColor='pink'
+        inactiveBackgroundColor='#ffce89'
         icon={() => <Icon color='#000' size={18} name='home' />}
         onPress={() => {
           navigation.navigate('GroupList');
@@ -56,7 +56,7 @@ const DrawerContent = ({ navigation }) => {
         labelStyle={{
           fontSize: 18,
         }}
-        inactiveBackgroundColor='pink'
+        inactiveBackgroundColor='#ffce89'
         icon={() => <Icon color='#000' size={18} name='person' />}
         onPress={() => {
           navigation.navigate('Profile');

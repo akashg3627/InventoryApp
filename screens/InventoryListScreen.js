@@ -21,17 +21,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const InventoryListScreen = ({ route, navigation }) => {
   const { group_ID } = route.params;
-  //let [groupInventory, setGroupInventory] = useState([]);
-
-  // useEffect(() => {
-  //   const inventory = INVENTORY.filter((item) => {
-  //     return item.group_ID !== group_ID;
-  //   });
-
-  //   setGroupInventory(INVENTORY);
-
-  //   console.log(groupInventory);
-  // }, [groupInventory, group_ID]);
   const groupInventory = INVENTORY.filter((item) => {
     return item.group_ID === group_ID;
   });
@@ -49,27 +38,7 @@ const InventoryListScreen = ({ route, navigation }) => {
         </Body>
         <Right />
       </Header>
-      <Content
-        padder
-        // contentContainerStyle={{
-        //   flexDirection: 'row',
-        //   justifyContent: 'center',
-        //   alignItems: 'center',
-        // }}
-      >
-        {/* <List>
-          {groupInventory.map((collection) => (
-            <ListItem key={collection.inventory_collection_ID}>
-              <Left>
-                <Text>{collection.inventory_collection_name}</Text>
-              </Left>
-              <Right>
-                <Icon name='arrow-forward' />
-              </Right>
-            </ListItem>
-          ))}
-        </List> */}
-
+      <Content padder>
         {groupInventory.map((collection) => (
           <TouchableOpacity
             activeOpacity={0.6}

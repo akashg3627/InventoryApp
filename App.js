@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Provider } from 'react-redux';
+import store from './store/store';
 import GroupListScreen from './screens/GroupListScreen';
 import EventListScreen from './screens/EventListScreen';
 import InventoryListScreen from './screens/InventoryListScreen';
@@ -33,17 +35,19 @@ const Root = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName={Root}
-        drawerContent={(props) => <DrawerContent {...props} />}
-        drawerStyle={{
-          backgroundColor: '#f1f1f1',
-        }}
-      >
-        <Drawer.Screen name='Groups' component={Root} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          initialRouteName={Root}
+          drawerContent={(props) => <DrawerContent {...props} />}
+          drawerStyle={{
+            backgroundColor: '#f1f1f1',
+          }}
+        >
+          <Drawer.Screen name='Groups' component={Root} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

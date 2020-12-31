@@ -38,14 +38,7 @@ const GroupListScreen = ({ navigation }) => {
         </Body>
         <Right />
       </Header>
-      <Content
-        padder
-        // contentContainerStyle={{
-        //   flexDirection: 'row',
-        //   justifyContent: 'center',
-        //   alignItems: 'center',
-        // }}
-      >
+      <Content padder>
         <List>
           {GROUPS.map((group) => (
             <ListItem
