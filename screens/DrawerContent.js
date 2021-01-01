@@ -6,6 +6,8 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { Container, Content, Text, View, Thumbnail, Icon } from 'native-base';
+import { StyleSheet } from 'react-native';
+import colors from '../constants/colors';
 
 const DrawerContent = ({ navigation }) => {
   return (
@@ -20,19 +22,9 @@ const DrawerContent = ({ navigation }) => {
     // </Container>
     <DrawerContentScrollView>
       {/* <DrawerItemList {...props} /> */}
-      <View
-        style={{
-          backgroundColor: '#fff',
-          margin: 10,
-          padding: 20,
-          borderRadius: 20,
-        }}
-      >
+      <View style={styles.drawerView}>
         <Thumbnail
-          style={{
-            padding: 50,
-            alignSelf: 'center',
-          }}
+          style={styles.drawerThumbNail}
           square
           source={{
             uri:
@@ -42,22 +34,18 @@ const DrawerContent = ({ navigation }) => {
       </View>
       <DrawerItem
         label='Home'
-        labelStyle={{
-          fontSize: 18,
-        }}
-        inactiveBackgroundColor='#ffce89'
-        icon={() => <Icon color='#000' size={18} name='home' />}
+        labelStyle={styles.labelStyle}
+        inactiveBackgroundColor={colors.primary}
+        icon={() => <Icon color={colors.iconColors} size={18} name='home' />}
         onPress={() => {
           navigation.navigate('GroupList');
         }}
       />
       <DrawerItem
         label='Profile'
-        labelStyle={{
-          fontSize: 18,
-        }}
-        inactiveBackgroundColor='#ffce89'
-        icon={() => <Icon color='#000' size={18} name='person' />}
+        labelStyle={styles.labelStyle}
+        inactiveBackgroundColor={colors.primary}
+        icon={() => <Icon color={colors.iconColors} size={18} name='person' />}
         onPress={() => {
           navigation.navigate('Profile');
         }}
@@ -65,5 +53,21 @@ const DrawerContent = ({ navigation }) => {
     </DrawerContentScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  drawerView: {
+    backgroundColor: colors.secondary,
+    margin: 10,
+    padding: 20,
+    borderRadius: 20,
+  },
+  drawerThumbNail: {
+    padding: 50,
+    alignSelf: 'center',
+  },
+  labelStyle: {
+    fontSize: 18,
+  },
+});
 
 export default DrawerContent;

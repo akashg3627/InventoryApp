@@ -10,6 +10,7 @@ import GroupListScreen from './screens/GroupListScreen';
 import InventoryListScreen from './screens/InventoryListScreen';
 import InventoryDetailsScreen from './screens/InventoryDetailsScreen';
 import DrawerContent from './screens/DrawerContent';
+import colors from './constants/colors';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -39,7 +40,7 @@ export default function App() {
           initialRouteName={Root}
           drawerContent={(props) => <DrawerContent {...props} />}
           drawerStyle={{
-            backgroundColor: '#f1f1f1',
+            backgroundColor: colors.secondary,
           }}
         >
           <Drawer.Screen name='Groups' component={Root} />

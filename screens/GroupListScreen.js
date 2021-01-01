@@ -13,14 +13,13 @@ import {
   List,
   ListItem,
   Thumbnail,
-  H2,
   H3,
   Spinner,
 } from 'native-base';
 
 import CustomHeader from '../components/CustomHeader';
 import { listGroups } from '../store/actions/groups';
-
+import colors from '../constants/colors';
 import { GROUPS } from '../data/dummy-data';
 
 const GroupListScreen = ({ navigation }) => {
@@ -37,7 +36,7 @@ const GroupListScreen = ({ navigation }) => {
 
       <Content padder>
         {groups.length === 0 ? (
-          <Spinner color='blue' />
+          <Spinner color={colors.primary} />
         ) : (
           <List>
             {groups.map((group) => (
