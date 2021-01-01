@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Container,
-  Header,
   Title,
   Button,
   Left,
@@ -15,61 +15,62 @@ import {
   Thumbnail,
   H2,
   H3,
+  Spinner,
 } from 'native-base';
+
+import CustomHeader from '../components/CustomHeader';
+import { listGroups } from '../store/actions/groups';
 
 import { GROUPS } from '../data/dummy-data';
 
 const GroupListScreen = ({ navigation }) => {
+  const { groups } = useSelector((state) => state.groups);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listGroups(GROUPS));
+  }, [dispatch, listGroups]);
+
   return (
     <Container>
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon
-              onPress={() => {
-                navigation.openDrawer();
-              }}
-              name='menu'
-            />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Groups</Title>
-        </Body>
-        <Right />
-      </Header>
+      <CustomHeader headerTitle='Groups' navigation={navigation} />
+
       <Content padder>
-        <List>
-          {GROUPS.map((group) => (
-            <ListItem
-              key={group.group_ID}
-              thumbnail
-              onPress={() => {
-                navigation.navigate('InventoryList', {
-                  group_ID: group.group_ID,
-                });
-              }}
-            >
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri: group.group_icon,
-                  }}
-                />
-              </Left>
-              <Body>
-                <H3>{group.group_name}</H3>
-                {/* <Text note numberOfLines={1}>
+        {groups.length === 0 ? (
+          <Spinner color='blue' />
+        ) : (
+          <List>
+            {groups.map((group) => (
+              <ListItem
+                key={group.group_ID}
+                thumbnail
+                onPress={() => {
+                  navigation.navigate('InventoryList', {
+                    group_ID: group.group_ID,
+                  });
+                }}
+              >
+                <Left>
+                  <Thumbnail
+                    square
+                    source={{
+                      uri: group.group_icon,
+                    }}
+                  />
+                </Left>
+                <Body>
+                  <H3>{group.group_name}</H3>
+                  {/* <Text note numberOfLines={1}>
                 Its time to build a difference . .
               </Text> */}
-              </Body>
-              <Right>
-                <Icon name='arrow-forward' />
-              </Right>
-            </ListItem>
-          ))}
-        </List>
+                </Body>
+                <Right>
+                  <Icon name='arrow-forward' />
+                </Right>
+              </ListItem>
+            ))}
+          </List>
+        )}
       </Content>
     </Container>
   );

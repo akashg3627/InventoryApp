@@ -7,7 +7,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import GroupListScreen from './screens/GroupListScreen';
-import EventListScreen from './screens/EventListScreen';
 import InventoryListScreen from './screens/InventoryListScreen';
 import InventoryDetailsScreen from './screens/InventoryDetailsScreen';
 import DrawerContent from './screens/DrawerContent';
@@ -23,7 +22,6 @@ const Root = () => {
       }}
     >
       <Stack.Screen name='GroupList' component={GroupListScreen} />
-      <Stack.Screen name='EventList' component={EventListScreen} />
       <Stack.Screen name='InventoryList' component={InventoryListScreen} />
       <Stack.Screen
         name='InventoryDetails'

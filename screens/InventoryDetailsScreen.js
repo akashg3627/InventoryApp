@@ -1,24 +1,11 @@
 import React from 'react';
-import {
-  Container,
-  Header,
-  Title,
-  Button,
-  Left,
-  Right,
-  Body,
-  Icon,
-  Content,
-  Text,
-  List,
-  ListItem,
-  Card,
-  CardItem,
-} from 'native-base';
+import { Container, Body, Text, List, ListItem } from 'native-base';
+
+import CustomHeader from '../components/CustomHeader';
 
 import { INVENTORY } from '../data/dummy-data';
 
-const InventoryDetailsScreen = ({ route }) => {
+const InventoryDetailsScreen = ({ route, navigation }) => {
   const { inventory_collection_ID } = route.params;
 
   const collectionData = INVENTORY.find((data) => {
@@ -26,17 +13,8 @@ const InventoryDetailsScreen = ({ route }) => {
   });
   return (
     <Container>
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name='menu' />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Inventory Details</Title>
-        </Body>
-        <Right />
-      </Header>
+      <CustomHeader headerTitle='Details' navigation={navigation} />
+
       <Body>
         <Text> {collectionData.inventory_collection_name}</Text>
         <List>

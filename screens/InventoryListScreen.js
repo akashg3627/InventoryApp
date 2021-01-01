@@ -1,23 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Container,
-  Header,
-  Title,
-  Button,
-  Left,
-  Right,
-  Body,
-  Icon,
-  Content,
-  Text,
-  List,
-  ListItem,
-  Card,
-  CardItem,
-} from 'native-base';
+import { Container, Body, Content, Text, Card, CardItem } from 'native-base';
 
 import { INVENTORY } from '../data/dummy-data';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import CustomHeader from '../components/CustomHeader';
 
 const InventoryListScreen = ({ route, navigation }) => {
   const { group_ID } = route.params;
@@ -27,17 +13,8 @@ const InventoryListScreen = ({ route, navigation }) => {
 
   return (
     <Container>
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name='menu' />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Inventory</Title>
-        </Body>
-        <Right />
-      </Header>
+      <CustomHeader headerTitle='Inventory' navigation={navigation} />
+
       <Content padder>
         {groupInventory.map((collection) => (
           <TouchableOpacity
